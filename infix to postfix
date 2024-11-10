@@ -1,0 +1,81 @@
+   #include<stdio.h>
+   #include<ctype.h>
+int n=20;
+int top=-1;
+char stack[20];
+
+void push(int item){
+    if(top==n-1){
+        printf("stack is full");
+    }
+    else{
+        top++;
+        stack[top]=item;
+    }
+}
+ char pop(){
+     if(top==-1){
+         printf("stack is empty");
+     }
+     else{
+         return stack[top--];
+     }
+ }
+ 
+ int precedence(char c){
+     switch(c){
+         case '+':
+         case '-':return 1;
+                  break;
+        case '*':
+         case '/':return 2;
+                  break;
+        
+         case '^':return 3;
+                  break;
+        default:return 0;
+     }
+ }
+ 
+ 
+ void infixtopostfix(char a[n],char p[n]){
+     int i=0;
+     int j=0;
+     while(a[i]!='\0')
+     {
+         if(isdigit(a[i]))
+         {
+             p[j++]=a[i];
+         }
+         else if(a[i]=='('){
+             push(a[i]);
+         }
+         else if(a[i]==')'){
+             while(top!=-1 && stack[top]!='('){
+                 p[j++]=pop();
+             }
+             pop();
+         }
+         else{
+             while(top!=-1 && precedence(stack[top])>=precedence(a[i])){
+                 p[j++]=pop();
+             }
+             push(a[i]);
+         }
+         i++;
+     }
+     while(top!=-1){
+         p[j++]=pop();
+     }
+     p[j]='\0';
+ }
+ 
+ 
+ int main(){
+     char a[n],p[n];
+     printf("enter the infix expression");
+     scanf("%s",a);
+     infixtopostfix(a,p);
+     printf("postfix expression is: %s",p);
+     return 0;
+ }
