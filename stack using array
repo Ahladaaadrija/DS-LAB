@@ -1,0 +1,75 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+int stack[100];
+int n=20;
+int top=-1;
+
+
+void push(int item){
+    if(top==n-1){
+        printf("stack is full");
+    }
+    else{
+        top++;
+        stack[top]=item;
+    }
+}
+
+int pop(){
+    if(top==-1){
+        printf("the stack is empty");
+    }
+    else{
+        
+        return stack[top--];
+        
+    }
+}
+
+int peek()
+{  
+    if(top==-1){
+        printf("empty");
+    }
+    else{
+        return stack[top];
+    }
+}
+
+int display(){
+    int i;
+    for(i=top;i>=0;i--){
+        printf("%d",stack[i]);
+    }
+}
+
+
+int main(){
+   int c,x;
+    while(1){
+        printf("\n enter 1 foe push");
+        printf("\n enter 2 for pop");
+        printf("\n enter 3 for peek");
+        printf("\n enter 4 for display");
+        printf("\n enter 5 exit");
+         printf("\n Enter the choice");
+    scanf("%d",&c);
+    switch(c){
+        case 1:printf("\n enter the item to be pushed");
+               scanf("%d",&x);
+               push(x);
+               break;
+        case 2:x=pop();
+               printf("\n the poped  element is:%d",x);
+               break;
+        case 3:x=peek();
+               printf("\n the element at top is:%d",x);
+               break;
+        case 4:printf("\n the Stack is:");
+               display();
+               break;
+        case 5:printf("existed");
+               return 0;}
+    
+    }
+}
