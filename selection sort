@@ -1,0 +1,32 @@
+#include<stdio.h>
+void sort(int a[10],int n){
+    int min,i,j,t;
+    for(i=0;i<n-1;i++){
+        min=i;
+        for(j=i+1;j<n;j++){
+            if(a[j]<a[min]){
+                min=j;
+            }
+        if(min!=i){
+            t=a[min];
+            a[min]=a[i];
+            a[i]=t;
+            }
+        }
+    }
+    
+}
+void main(){
+    int a[10],n,i;
+    printf("Enter the number of elemnts in the array");
+    scanf("%d",&n);
+    printf("\n Enter the elemnents in the array");
+    for(i=0;i<n;i++){
+        scanf("%d",&a[i]);
+    }
+ sort(a,n);
+    printf("\n sorted array is");
+    for(i=0;i<n;i++){
+        printf("%d",a[i]);
+    }
+}
