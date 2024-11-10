@@ -1,0 +1,114 @@
+#include<stdio.h>
+int n=10;
+int f=-1;
+int r=-1;
+int Q[10];
+void push(int item);
+void  pop();
+void inject();
+void reject();
+ void display();
+
+
+void push(int item)
+{
+ if(f=0 && r == n-1)
+  printf("Queue is full");
+  else if(f==r==-1){
+    f=r=0;
+    Q[f]=item;}
+   else if(f>0){
+    f=f-1;
+    Q[f]=item;}
+   else{
+   for(int i=r;i<=f;i++){
+   Q[i+1]=Q[i];
+  }Q[f]=item;
+  r=r+1;
+  }}
+  
+  
+void pop()
+{
+ if(f==r==-1)
+  printf("Queue is empty");
+ else if(f==r){
+  printf("Deleted element is");
+   f==r==-1;}
+  else
+  {
+   f=f+1;
+  }}
+ 
+ void inject(int item){ 
+     if(f=0 && r == n-1)
+  printf("Queue is full");
+  else if(f==r==-1){
+    f=r=0;
+    Q[r]=item;}
+   else if(r<n-1){
+    r=r+1;
+    Q[r]=item;}
+   else{
+   for(int i=r;i<=f;i++){
+   Q[i-1]=Q[i];
+   
+  }Q[r]=item;
+   f=f-1;
+   }}
+  
+void reject(){
+if(f==r==-1)
+  printf("Queue is empty");
+ else if(f==r){
+  printf("Deleted element is");
+   f==r==-1;}
+  else
+  {
+   r=r-1;
+  }}
+  
+  void display(){
+  int i;
+  if(f<=r){
+  for(i=f;i<=r;i++){
+  printf("%d",Q[i]);
+  }
+  }}          
+  
+  
+int main(){
+      int i;
+      int choice, value;
+      while(1){
+                printf("\n enter the choices");
+                printf("\n enter 1 for insert from f");
+                printf("\n enter 2 for delete from f");
+                printf("\n enter 3 for insert from r");
+                printf("\n enter 4 for delete from r");
+                
+                printf("\n enter 5 for display");
+                printf("\n enter 6 for exit");
+                scanf("%d",&choice);
+                switch (choice){
+                    case 1:printf("Enter the element insert at f");
+                           scanf("%d",&value);
+                          push(value);
+                           break;
+                   case 2:pop();
+                          break;
+                   case 3:printf("Enter the element insert at r");
+                           scanf("%d",&value);
+                          inject(value);
+                           break;
+                   case 4:reject(); 
+                          break;       
+                  case 5:printf("\nqueue in");
+                        display();
+                        break;
+                 case 6:printf("exited");
+                        return 0;
+                  
+ }}}
+  
+ 
