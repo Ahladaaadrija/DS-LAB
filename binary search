@@ -1,53 +1,57 @@
 #include<stdio.h>
-int n,a[10],i,key,flag=0,lb,ub,mid,p,c;
+int a[10],i,key,flag=0,lb,ub,mid,p,c,t;
 
 int binary(int a[10],int key,int n){
     lb=0;
     ub=n-1;
-    while(lb<=ub){
-         mid=(lb+ub)/2;
+    while(lb<ub){
+        mid=(lb+ub)/2;
         if(a[mid]==key){
             return mid;
-       }
+        }
         else if(key>a[mid]){
             lb=mid+1;
         }
-        else if(key<a[mid]){
+        else{
             ub=mid-1;
-        }}
+        }
+    }
     return 0;
 }
-
-void sort(int a[10],int n){
-  for(p=1;p<n;p++){
-      for(c=0;c<n-p;c++){
-          if(a[c]>a[c+1]){
-              int t=a[c];
-              a[c]=a[c+1];
-              a[c+1]=t;
-          }}}}
-          
- void main(){
-     int n,a[10],i,key,lb,ub,mid;
-     printf("Enter the number of elements in array");
-    scanf("%d",&n);
-    printf("Enter the elements in the array");
-    for(i=0;i<n;i++)
-    {
-        scanf("%d",&a[i]);
-    }
-sort(a,n);
-    printf("\nsorted array is:");
+void sort(int a[10],int n)
+{
+    for(p=1;p<n;p++){
+        for(c=0;c<n-p;c++){
+            if(a[c]>a[c+1]){
+                t=a[c];
+                a[c]=a[c+1];
+                a[c+1]=t;
+            }}}}
+            
+void main(){
+    int a[10],n,i,p,c,lb,ub,key,mid;
+    printf("\n Enter the number of elements");
+    scanf("\n %d",&n);
+    printf("\n Enter the elements");
     for(i=0;i<n;i++){
-         printf("\n %d",a[i]);
-    }
-    printf("\nEnter the key to be searched");
-    scanf("%d",&key);
-    int result=binary(a,key,n);
-    if(result==0){
-        printf("the key is not found");
-    }
-    else{
-        printf("the key is found");
-    }
+    scanf("%d",&a[i]);
+} 
+sort(a,n);
+printf("\n sorted array is ");
+for(i=0;i<n;i++){
+    printf("\n %d",a[i]);
+}
+
+printf("\n Enter the key");
+scanf("%d",&key);
+
+int r=binary(a,key,n);
+if(r==0){
+    printf("\n the key is not found");
+}
+else{
+    printf("\n the key is found");
+}
+
+
 }
