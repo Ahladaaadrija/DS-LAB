@@ -24,7 +24,7 @@ void merge(int a[20],int lb,int mid,int ub){
         j++;
         k++;
     }
-    for(i=0;i<=ub;i++){
+    for(i=lb;i<=ub;i++){
             a[i]=b[i];
         }
     }
