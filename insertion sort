@@ -1,0 +1,29 @@
+#include<stdio.h>
+void insertion(int a[10],int n){
+    int i,j,t;
+    for(i=1;i<n;i++){
+        t=a[i];
+        j=i-1;
+        while(j>=0 && a[j]>t)
+        { 
+            a[j+1]=a[j];
+            a[j]=t;
+            j--;
+            }
+        a[j+1]=t;
+        }
+    }
+void main(){
+    int a[10],n,i;
+    printf("Enter the number of elemnts in the array");
+    scanf("%d",&n);
+    printf("\n Enter the elemnents in the array");
+    for(i=0;i<n;i++){
+        scanf("%d",&a[i]);
+    }
+ insertion(a,n);
+    printf("\n sorted array is");
+    for(i=0;i<n;i++){
+        printf("%d",a[i]);
+    }
+}
