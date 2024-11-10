@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<math.h>
+int part(int a[10],int lb,int ub){
+    int t,start,end,p;
+    p=a[lb];
+    start=lb;
+    end=ub;
+    while(start<end)
+    {
+    while(a[start]<=p){
+        start++;
+    }
+    while(a[end]>p){
+        end--;
+    }
+    if(start<end){
+        t=a[start];
+        a[start]=a[end];
+        a[end]=t;
+    }}
+    t=a[lb];
+    a[lb]=a[end];
+    a[end]=t;
+    return end;
+}
+void quick(int a[20],int lb,int ub){
+    
+    if(lb<ub){
+        
+        int loc=part(a,lb,ub);
+        quick(a,lb,loc-1);
+        quick(a,loc+1,ub);
+    }
+    
+}
+
+
+
+void main(){
+    int n,a[20],b[20],i,k;
+    printf("Enter the number of elemnts");
+    scanf("%d",&n);
+    printf("\n Enter the size of the arraay ");
+    for(i=0;i<n;i++){
+        scanf("%d",&a[i]);
+    }
+    quick(a,0,n-1);
+    printf("\n the sorted array is");
+    for(i=0;i<n;i++){
+        printf("%d",a[i]);
+    }
+}
