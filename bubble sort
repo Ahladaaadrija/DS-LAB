@@ -1,0 +1,28 @@
+#include<stdio.h>
+void sort(int a[10],int n)
+{
+    int p,c,t;
+    for(p=1;p<n;p++){
+        for(c=0;c<n-p;c++){
+            if(a[c]>a[c+1]){
+                t=a[c];
+                a[c]=a[c+1];
+                a[c+1]=t;
+            }
+        }
+    }
+}
+            
+void main(){
+    int a[10],n,i;
+    printf("\n Enter the number of elements");
+    scanf("\n %d",&n);
+    printf("\n Enter the elements");
+    for(i=0;i<n;i++){
+    scanf("%d",&a[i]);
+} 
+sort(a,n);
+printf("\n sorted array is ");
+for(i=0;i<n;i++){
+    printf("\n %d",a[i]);
+}}
