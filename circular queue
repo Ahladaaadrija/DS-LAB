@@ -1,0 +1,86 @@
+ #include<stdio.h>
+ int r=-1;
+ int f=-1;
+ int Q[20];
+ int c,n,item,x;
+ 
+ void enqueue(int item){
+         if ((r + 1) % n == f) {
+         printf("full");
+     }
+     else if(f==-1 && r==-1){
+         r=0;
+         f=0;
+         Q[r]=item;
+     }
+     else{
+         r=(r+1)%n;
+         Q[r]=item;
+     }
+ }
+ 
+ void dequeue(){
+     if(f==-1 && r==-1){
+         printf("empty");
+     }
+     else if(r==f){
+         r=-1;
+         f=-1;
+     }
+     else{
+         f=(f+1)%n;
+     }
+ }
+ 
+void display(){
+  int i;
+  printf("\n queue is ");
+  if(f<=r)
+  {
+  for(i=f+1;i<=r;i++)
+  printf("%d ",Q[i]);
+     }
+  else if(f>r)
+  {
+  for(i=f;i<=(n-1);i++)
+  printf("%d ",Q[i]);
+  
+  for(i=0;i<=r;i++)
+  {
+  printf("%d ",Q[i]);
+  }}
+  }
+ 
+int main(){
+    
+    printf("enter the no. of elements");
+    scanf("%d",&n);
+    
+     if (n <= 0) {
+        printf("Queue size must be greater than 0\n");
+        return 1;
+    }
+    
+    while(1){
+        printf("\n enter 1 for enqueue");
+        printf("\n enter 2 for dequeue");
+        printf("\n enter 3 for display");
+        printf("\nEnter 4 for exit ");
+        printf("\n enter the choice");
+        scanf("%d",&c);
+        switch(c){
+            case 1:printf("Enter the element to be enqueued");
+                   scanf("%d",&x);
+                   enqueue(x);
+                   break;
+            case 2:dequeue();
+                  
+                   break;
+            case 3:display();
+                   break;
+            case 4:printf("exited");
+                   return 0;
+                   
+        }
+    }
+}
