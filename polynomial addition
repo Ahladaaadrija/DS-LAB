@@ -1,0 +1,126 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+#include<stdlib.h>
+
+struct poly{
+    int co;
+    int ex;
+    struct poly *next;
+};
+struct poly *createnode(int co,int ex){
+    struct poly *new=(struct poly*)malloc(sizeof(struct poly));
+    new->ex=ex;
+    new->co=co;
+    new->next=NULL;
+    return new;
+}
+
+struct poly *read(){
+    struct poly *head=NULL,*ptr=NULL;
+    int i,n,co,ex;
+    printf("\nEnter the number of terms");
+    scanf("%d",&n);
+    for(i=1;i<=n;i++){
+        printf("Enter the coefficient ");
+        scanf("%d",&co);
+        printf("Enter the exponent");
+        scanf("%d",&ex);
+        struct poly *new=createnode(co,ex);
+        if(head==NULL){
+            head=new;
+            ptr=head;
+        }
+        else{
+            ptr->next=new;
+            ptr=new;
+        }
+    }
+    return head;}
+    
+    
+struct poly *add(struct poly *phead,struct poly *qhead){
+    struct poly *p=phead,*q=qhead,*rhead=NULL,*r=NULL,*new;
+    
+    while(p!=NULL && q!=NULL){
+        if(p->ex==q->ex){
+            new=createnode(p->co+q->co,p->ex);
+            p=p->next;
+            q=q->next;
+        }
+        else if(p->ex>q->ex){
+            new=createnode(p->co,p->ex);
+            p=p->next;
+        }
+        else{
+            new=createnode(q->co,q->ex);
+            q=q->next;
+        }
+        if(rhead==NULL){
+            rhead=new;
+            r=rhead;
+        }
+        else{
+            r->next=new;
+            r=new;
+        }
+    }
+    while(p!=NULL){
+        new=createnode(p->co,p->ex);
+        if(rhead==NULL){
+        rhead=new;
+        r=rhead;
+    }
+    else{
+        r->next=new;
+        r=new;
+    }
+        p=p->next;
+    }
+    while(q!=NULL){
+        new=createnode(q->co,q->ex);
+        if(rhead==NULL){
+        rhead=new;
+        r=rhead;
+    }
+    else{
+        r->next=new;
+        r=new;
+    }
+        q=q->next;
+    }
+    return rhead;}
+    
+struct poly *display(struct poly *head){
+    if(head==NULL){
+        printf("Empty\n");
+    
+    }
+    else{
+        struct poly *ptr=head;
+        while(ptr!=NULL){
+            printf("%d*x^%d",ptr->co,ptr->ex);
+            if(ptr->next!=NULL){
+                printf(" + ");
+            }
+            ptr=ptr->next;
+        }
+        printf("\n");
+    }
+}
+
+int main(){
+    struct poly *phead,*qhead,*rhead;
+    printf("Enteer the first poly");
+    phead=read();
+    printf("\n ente rthe second poly");
+    qhead=read();
+    rhead=add(phead,qhead);
+    printf("\n resultand poly");
+    display(rhead);
+    return 0;
+}
+
+
+    
+
+
